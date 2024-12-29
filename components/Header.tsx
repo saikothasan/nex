@@ -1,43 +1,64 @@
 import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="bg-white/30 dark:bg-gray-800/30 backdrop-blur-md shadow-md">
-      <div className="container mx-auto px-4 py-6">
+    <header className="glass sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+          <Link href="/" className="text-2xl font-bold text-primary">
             AI Prompt Generator
           </Link>
-          <nav>
-            <ul className="flex space-x-6 items-center">
-              <li>
-                <Link href="/about" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/yourusername/ai-prompt-generator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-md hover:from-purple-600 hover:to-pink-600 transition-colors duration-300"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <ThemeToggle />
-              </li>
-            </ul>
+          <nav className="hidden md:flex space-x-6 items-center">
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors duration-300">
+              About
+            </Link>
+            <Link href="/faq" className="text-foreground hover:text-primary transition-colors duration-300">
+              FAQ
+            </Link>
+            <a
+              href="https://github.com/yourusername/ai-prompt-generator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block glass text-foreground px-4 py-2 rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            >
+              GitHub
+            </a>
+            <ThemeToggle />
           </nav>
+          <button
+            className="md:hidden text-foreground focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
+      {isMenuOpen && (
+        <div className="md:hidden glass">
+          <nav className="flex flex-col space-y-4 p-4">
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors duration-300">
+              About
+            </Link>
+            <Link href="/faq" className="text-foreground hover:text-primary transition-colors duration-300">
+              FAQ
+            </Link>
+            <a
+              href="https://github.com/yourusername/ai-prompt-generator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block glass text-foreground px-4 py-2 rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            >
+              GitHub
+            </a>
+            <ThemeToggle />
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
