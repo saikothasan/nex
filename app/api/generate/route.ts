@@ -24,66 +24,66 @@ export async function POST(req: Request) {
     let genrePrompt = '';
     switch (genre) {
       case 'fiction':
-        genrePrompt = 'for a fictional story';
+        genrePrompt = 'for a fictional scenario';
         break;
       case 'non-fiction':
-        genrePrompt = 'for a non-fiction article';
+        genrePrompt = 'for a factual or informative response';
         break;
       case 'poetry':
-        genrePrompt = 'for a poem';
+        genrePrompt = 'for a poetic interpretation';
         break;
       case 'academic':
-        genrePrompt = 'for an academic paper';
+        genrePrompt = 'for an academic analysis';
         break;
       case 'business':
-        genrePrompt = 'for a business document';
+        genrePrompt = 'for a business-related response';
         break;
       default:
-        genrePrompt = '';
+        genrePrompt = 'for a general response';
     }
 
     let audiencePrompt = '';
     switch (audience) {
       case 'children':
-        audiencePrompt = 'for children';
+        audiencePrompt = 'suitable for children';
         break;
       case 'teenagers':
-        audiencePrompt = 'for teenagers';
+        audiencePrompt = 'appealing to teenagers';
         break;
       case 'adults':
-        audiencePrompt = 'for adults';
+        audiencePrompt = 'appropriate for adults';
         break;
       case 'professionals':
-        audiencePrompt = 'for professionals';
+        audiencePrompt = 'tailored for professionals';
         break;
       default:
-        audiencePrompt = 'for a general audience';
+        audiencePrompt = 'suitable for a general audience';
     }
 
     let purposePrompt = '';
     switch (purpose) {
       case 'writing':
-        purposePrompt = 'to inspire writing';
+        purposePrompt = 'to generate a written piece';
         break;
       case 'brainstorming':
-        purposePrompt = 'to facilitate brainstorming';
+        purposePrompt = 'to facilitate idea generation';
         break;
       case 'discussion':
-        purposePrompt = 'to spark discussion';
+        purposePrompt = 'to initiate a discussion';
         break;
       case 'teaching':
-        purposePrompt = 'for teaching purposes';
+        purposePrompt = 'to explain a concept';
         break;
       case 'presentation':
-        purposePrompt = 'for a presentation';
+        purposePrompt = 'to create presentation content';
         break;
       default:
-        purposePrompt = 'for general use';
+        purposePrompt = 'for general AI interaction';
     }
 
     const { text } = await generateText({
       model: openai('gpt-4o-mini'),
-      prompt: `Generate a creative and engaging prompt ${genrePrompt} about ${topic}. The prompt should be ${promptLength} long, have a ${tone} tone, be suitable ${audiencePrompt}, and be designed ${purposePrompt}. The prompt should be thought-provoking and inspire creativity.`,
+      prompt: `As an AI prompt generator, create a prompt specifically designed for AI models to process and respond to. The prompt should be about ${topic}, ${promptLength} long, with a ${tone} tone, ${genrePrompt}, ${audiencePrompt}, and ${purposePrompt}. Ensure the prompt is clear, concise, and structured in a way that an AI can easily understand and generate a relevant response. The prompt should encourage the AI to showcase its capabilities in natural language processing, reasoning, and creative thinking within the given context. Remember, this prompt is not for human writers, but for AI models to interpret and respond to.`,
       maxTokens: 300,
     });
 
