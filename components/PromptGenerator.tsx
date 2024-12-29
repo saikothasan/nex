@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sliders, RefreshCw, Copy, Check, Save, Trash2, Share2, Download } from 'lucide-react';
+import { Sliders, RefreshCw, Copy, Check, Save, Share2, Download } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PromptHistory from './PromptHistory';
@@ -251,17 +251,17 @@ export default function PromptGenerator() {
         </div>
       )}
       {history.length > 0 && (
-  <div className="mt-12">
-    <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Prompt History</h2>
-    <PromptHistory history={history} />
-  </div>
-)}
-{savedPrompts.length > 0 && (
-  <div className="mt-12">
-    <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Saved Prompts</h2>
-    <SavedPrompts savedPrompts={savedPrompts} onDelete={deleteSavedPrompt} />
-  </div>
-)}
+        <div className="mt-12">
+          <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Prompt History</h2>
+          <PromptHistory history={history} />
+        </div>
+      )}
+      {savedPrompts.length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Saved Prompts</h2>
+          <SavedPrompts savedPrompts={savedPrompts} onDelete={deleteSavedPrompt} />
+        </div>
+      )}
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
