@@ -250,8 +250,18 @@ export default function PromptGenerator() {
           </div>
         </div>
       )}
-      <PromptHistory history={history} />
-      <SavedPrompts savedPrompts={savedPrompts} onDelete={deleteSavedPrompt} />
+      {history.length > 0 && (
+  <div className="mt-12">
+    <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Prompt History</h2>
+    <PromptHistory history={history} />
+  </div>
+)}
+{savedPrompts.length > 0 && (
+  <div className="mt-12">
+    <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Saved Prompts</h2>
+    <SavedPrompts savedPrompts={savedPrompts} onDelete={deleteSavedPrompt} />
+  </div>
+)}
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
