@@ -114,7 +114,7 @@ export default function PromptGenerator() {
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
           placeholder="Enter a topic..."
-          className="w-full px-4 py-3 rounded-lg bg-transparent border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-gray-400 text-lg"
+          className="w-full px-4 py-3 rounded-lg bg-transparent border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-gray-400 text-lg"
         />
         <button
           onClick={() => setShowSettings(!showSettings)}
@@ -126,15 +126,13 @@ export default function PromptGenerator() {
       </div>
       <div className={`mb-6 glass rounded-lg p-4 transition-all duration-300 ease-in-out ${showSettings ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Settings inputs (tone, length, genre, audience, purpose) */}
-          {/* ... (keep the existing select inputs, but update their styles) */}
           <div>
             <label htmlFor="tone" className="block text-sm font-medium text-foreground mb-1">Tone</label>
             <select
               id="tone"
               value={tone}
               onChange={(e) => setTone(e.target.value)}
-              className="w-full px-3 py-2 rounded-md bg-transparent border border-gray-300 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 rounded-md bg-transparent border border-white/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="neutral">Neutral</option>
               <option value="formal">Formal</option>
@@ -144,7 +142,65 @@ export default function PromptGenerator() {
               <option value="serious">Serious</option>
             </select>
           </div>
-          {/* Repeat for other select inputs (length, genre, audience, purpose) */}
+          <div>
+            <label htmlFor="length" className="block text-sm font-medium text-foreground mb-1">Length</label>
+            <select
+              id="length"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+              className="w-full px-3 py-2 rounded-md bg-transparent border border-white/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="short">Short</option>
+              <option value="medium">Medium</option>
+              <option value="long">Long</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="genre" className="block text-sm font-medium text-foreground mb-1">Genre</label>
+            <select
+              id="genre"
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+              className="w-full px-3 py-2 rounded-md bg-transparent border border-white/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="general">General</option>
+              <option value="fiction">Fiction</option>
+              <option value="non-fiction">Non-Fiction</option>
+              <option value="poetry">Poetry</option>
+              <option value="academic">Academic</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="audience" className="block text-sm font-medium text-foreground mb-1">Audience</label>
+            <select
+              id="audience"
+              value={audience}
+              onChange={(e) => setAudience(e.target.value)}
+              className="w-full px-3 py-2 rounded-md bg-transparent border border-white/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="general">General</option>
+              <option value="children">Children</option>
+              <option value="teenagers">Teenagers</option>
+              <option value="adults">Adults</option>
+              <option value="professionals">Professionals</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="purpose" className="block text-sm font-medium text-foreground mb-1">Purpose</label>
+            <select
+              id="purpose"
+              value={purpose}
+              onChange={(e) => setPurpose(e.target.value)}
+              className="w-full px-3 py-2 rounded-md bg-transparent border border-white/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="writing">Writing</option>
+              <option value="brainstorming">Brainstorming</option>
+              <option value="discussion">Discussion</option>
+              <option value="teaching">Teaching</option>
+              <option value="presentation">Presentation</option>
+            </select>
+          </div>
         </div>
       </div>
       <button
@@ -210,4 +266,3 @@ export default function PromptGenerator() {
     </div>
   );
 }
-
