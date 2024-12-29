@@ -83,7 +83,7 @@ export async function POST(req: Request) {
 
     const { text } = await generateText({
       model: openai('gpt-4o-mini'),
-      prompt: `As an AI prompt generator, create a prompt specifically designed for AI models to process and respond to. The prompt should be about ${topic}, ${promptLength} long, with a ${tone} tone, ${genrePrompt}, ${audiencePrompt}, and ${purposePrompt}. Ensure the prompt is clear, concise, and structured in a way that an AI can easily understand and generate a relevant response. The prompt should encourage the AI to showcase its capabilities in natural language processing, reasoning, and creative thinking within the given context. Remember, this prompt is not for human writers, but for AI models to interpret and respond to.`,
+      prompt: `Write a advanced prompt: ${topic}, ${promptLength} long, with a ${tone} tone, ${genrePrompt}, ${audiencePrompt}, and ${purposePrompt}.`,
       maxTokens: 300,
     });
 
