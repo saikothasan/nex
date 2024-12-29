@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sliders, RefreshCw, Copy, Check, Save, Share2, Download } from 'lucide-react';
+import { Sliders, RefreshCw, Copy, Check, Save, Share2, Download, Sparkles } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PromptHistory from './PromptHistory';
@@ -108,26 +108,25 @@ export default function PromptGenerator() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <div className="mb-6 relative glass rounded-lg p-4">
-        <input
-          type="text"
+      <div className="mb-8 relative glass rounded-lg p-6">
+        <textarea
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          placeholder="Enter a topic..."
-          className="w-full px-4 py-3 rounded-lg bg-transparent border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-gray-400 text-lg"
+          placeholder="Enter your topic or idea here..."
+          className="w-full px-4 py-3 rounded-lg bg-transparent border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-gray-400 text-lg min-h-[150px] resize-none"
         />
         <button
           onClick={() => setShowSettings(!showSettings)}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 text-foreground hover:text-primary focus:outline-none transition-transform duration-200 ease-in-out hover:scale-110"
+          className="absolute right-6 top-6 text-foreground hover:text-primary focus:outline-none transition-transform duration-200 ease-in-out hover:scale-110"
           aria-label="Toggle settings"
         >
           <Sliders size={24} />
         </button>
       </div>
-      <div className={`mb-6 glass rounded-lg p-4 transition-all duration-300 ease-in-out ${showSettings ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className={`mb-8 glass rounded-lg p-6 transition-all duration-300 ease-in-out ${showSettings ? 'opacity-100 max-h-[1000px]' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div>
-            <label htmlFor="tone" className="block text-sm font-medium text-foreground mb-1">Tone</label>
+            <label htmlFor="tone" className="block text-sm font-medium text-foreground mb-2">Tone</label>
             <select
               id="tone"
               value={tone}
@@ -143,7 +142,7 @@ export default function PromptGenerator() {
             </select>
           </div>
           <div>
-            <label htmlFor="length" className="block text-sm font-medium text-foreground mb-1">Length</label>
+            <label htmlFor="length" className="block text-sm font-medium text-foreground mb-2">Length</label>
             <select
               id="length"
               value={length}
@@ -156,7 +155,7 @@ export default function PromptGenerator() {
             </select>
           </div>
           <div>
-            <label htmlFor="genre" className="block text-sm font-medium text-foreground mb-1">Genre</label>
+            <label htmlFor="genre" className="block text-sm font-medium text-foreground mb-2">Genre</label>
             <select
               id="genre"
               value={genre}
@@ -172,7 +171,7 @@ export default function PromptGenerator() {
             </select>
           </div>
           <div>
-            <label htmlFor="audience" className="block text-sm font-medium text-foreground mb-1">Audience</label>
+            <label htmlFor="audience" className="block text-sm font-medium text-foreground mb-2">Audience</label>
             <select
               id="audience"
               value={audience}
@@ -187,7 +186,7 @@ export default function PromptGenerator() {
             </select>
           </div>
           <div>
-            <label htmlFor="purpose" className="block text-sm font-medium text-foreground mb-1">Purpose</label>
+            <label htmlFor="purpose" className="block text-sm font-medium text-foreground mb-2">Purpose</label>
             <select
               id="purpose"
               value={purpose}
@@ -206,19 +205,20 @@ export default function PromptGenerator() {
       <button
         onClick={generatePrompt}
         disabled={isLoading || !topic}
-        className="w-full glass text-foreground py-3 px-4 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-lg"
+        className="w-full glass text-foreground py-4 px-6 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-xl flex items-center justify-center"
       >
         {isLoading ? (
-          <RefreshCw className="animate-spin mx-auto" size={24} />
+          <RefreshCw className="animate-spin mr-2" size={24} />
         ) : (
-          'Generate Prompt'
+          <Sparkles className="mr-2" size={24} />
         )}
+        {isLoading ? 'Generating...' : 'Generate Prompt'}
       </button>
       {prompt && (
         <div className="mt-8 glass rounded-lg p-6 transition-opacity duration-300 ease-in-out opacity-100">
           <h2 className="text-2xl font-semibold mb-4 text-foreground">Generated Prompt:</h2>
-          <p className="text-foreground text-lg leading-relaxed">{prompt}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <p className="text-foreground text-lg leading-relaxed bg-black/20 p-4 rounded-md">{prompt}</p>
+          <div className="mt-6 flex flex-wrap gap-4">
             <button
               onClick={copyToClipboard}
               className="flex items-center justify-center px-4 py-2 glass text-foreground rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
@@ -266,3 +266,4 @@ export default function PromptGenerator() {
     </div>
   );
 }
+
